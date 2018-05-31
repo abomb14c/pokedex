@@ -18,16 +18,18 @@ class App extends Component {
       fetch(url)
         .then(response => response.json())
         .then(data => this.props.pokeDataDispatch(data))
-        .catch(error => this.setState({error}))
+        .catch(error => console.log(error))
   }
 
   render() {
     return (
       <div className='App'>
         <h1 className='header'> POKéDEX </h1>
-        {!this.props.pokeData &&
-        <img src={icon}></img>
-        }
+        <div>
+          {!this.props.pokeData &&
+          <img src={icon}></img>
+          }
+        </div>
         <FakeContainer />
       </div>
     );
