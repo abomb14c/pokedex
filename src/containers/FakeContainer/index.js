@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import PropTypes, { shape, func, string } from 'prop-types';
 import { connect } from 'react-redux';
 import { fakeAction } from '../../actions';
-import {PokeCard} from '../../components/PokeCard/PokeCard'
+import PokeCard from '../../components/PokeCard/PokeCard'
+import { getPokemonData } from '../../apiCall/apiCall'
+import { pokeInfo }  from '../../actions/index'
 
 class FakeContainer extends Component {
 
+  // getPokemon = async (poketype) => {
+  //   console.log(this.props)
+  //   // const actualPokemon = await getPokemonData()
+  //   // this.props.storePokemon(actualPokemon, poketype)
+    
+  // }
+
   displayPokemon = () => {
-    const displayCards = this.props.pokeData.map(pokemon => {
-      console.log(pokemon)
+    return  this.props.pokeData.map(pokemon => {
         return (<PokeCard {...pokemon} />)
     })
   }
@@ -29,6 +37,10 @@ class FakeContainer extends Component {
 
 export const mapStateToProps = (state) => ({
   pokeData: state.pokeData
+})
+
+export const mapDispatchToProps = (dispatch) => ({
+  storePokemon: (actualPokemon, poketype) => dispatch(pokeInfo(actualPokemon, poketype))
 })
 
 // const mapDispatchToProps = dispatch => ({ fakeAction:

@@ -6,3 +6,11 @@ export const pokeTypes = (pokeData) => {
         pokeData
    }   
 }
+
+export const pokeInfo = (actualPokemon, poketype) => {
+    return {
+         type: 'ADD_POKEINFO',
+         poketype,
+         actualPokemon
+    }   
+ }
