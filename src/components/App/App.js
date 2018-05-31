@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux"
 import './App.css';
 import FakeContainer from '../../containers/FakeContainer/'
-import { fetchPokemon } from '../../apiCall/apiCall'
+// import { fetchPokemon } from '../../apiCall/apiCall'
 import { pokeTypes } from '../../actions/index'
 
 class App extends Component {
@@ -11,10 +11,16 @@ class App extends Component {
   }
 
 
+
   componentDidMount () {
-    const pokeData = fetchPokemon()
-    props.pokeDataDispatch(pokeData)
-    
+    const url = 'http://localhost:3001/types'
+
+    const pokeData =
+      fetch(url)
+        .then(response => response.json())
+        .then(data => data)
+        .catch(error => error)
+    this.props.pokeDataDispatch(pokeData)
   }
 
   render() {
